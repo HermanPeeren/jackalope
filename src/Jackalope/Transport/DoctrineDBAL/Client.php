@@ -1513,7 +1513,7 @@ class Client extends BaseTransport implements QueryTransport, WritingInterface, 
 
         $type = $weakReference ? PropertyType::WEAKREFERENCE : PropertyType::REFERENCE;
 
-        $query = 'SELECT CONCAT(n.path, '/', fk.source_property_name) as path, fk.source_property_name FROM phpcr_nodes n'.
+        $query = "SELECT CONCAT(n.path, '/', fk.source_property_name) as path, fk.source_property_name FROM phpcr_nodes n".
             '   INNER JOIN phpcr_nodes_foreignkeys fk ON n.id = fk.source_id'.
             '   WHERE fk.target_id = ? AND fk.type = ?';
         $properties = $this->conn->fetchAll($query, array($targetId, $type));
